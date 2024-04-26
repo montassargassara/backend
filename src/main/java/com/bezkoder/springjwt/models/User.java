@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.models;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +33,18 @@ public class User {
 	@Size(max = 120)
 	private String password;
 
+	@Size(max = 100)
+	private String city;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "profile_image_id", referencedColumnName = "id")
+	private ImageModel profileImage;
+
+	@Size(max = 100)
+	private String position;
+
+	private String resetPasswordToken;
+	private Date resetPasswordExpire;
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 
@@ -85,5 +98,43 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public ImageModel getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(ImageModel profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
+	}
+
+	public Date getResetPasswordExpire() {
+		return resetPasswordExpire;
+	}
+
+	public void setResetPasswordExpire(Date resetPasswordExpire) {
+		this.resetPasswordExpire = resetPasswordExpire;
 	}
 }

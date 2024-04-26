@@ -32,6 +32,8 @@ public class Employee {
     private String email;
 
 	private String linkedin;
+
+	private  int phone;
 	@Enumerated(EnumType.STRING)
 	private RoleEmployee role;
     @Enumerated(EnumType.STRING)
@@ -63,16 +65,18 @@ public class Employee {
 	public Employee() {
 	}
 
-	public Employee(int id, String firstname, String lastname, String email, Gender gender,
+	public Employee(int id, String firstname, String lastname, String email, Gender gender,int phone,
 			Set<ImageModel> employeeImages, Team team) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.gender = gender;
+		this.phone = phone;
 		this.employeeImages = employeeImages;
 		this.team = team;
 	}
+
 
 	public int getId() {
 		return id;
@@ -112,6 +116,14 @@ public class Employee {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
 	}
 
 	public Team getTeam() {

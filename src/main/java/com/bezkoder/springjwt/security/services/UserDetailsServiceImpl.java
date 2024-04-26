@@ -23,5 +23,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		return UserDetailsImpl.build(user);
 	}
+	public String setPassword(String email, String newPassword){
+		User user = userRepository.findByEmail(email)
+				.orElseThrow(
+						() -> new RuntimeException("User not found with this email:" + email));
+		user.setPassword(newPassword);
+		userRepository.save(user);
+		return "new password set successfully login with new password";
 
+	}
 }
